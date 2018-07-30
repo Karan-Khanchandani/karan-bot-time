@@ -8,7 +8,7 @@ const moment = require('moment');
 
 service.get('/service/:location', (req, res, next) => {
 
-    request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.location + '&key=AIzaSyD2Tp6-xQ0RLrXc0_iwlzJ0__26-L8UHME', (err, response) => {
+    request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.location + '&key=YOUR_API_KEY', (err, response) => {
         if(err) {
             console.log(err);
             return res.sendStatus(500);
@@ -17,7 +17,7 @@ service.get('/service/:location', (req, res, next) => {
         const location = response.body.results[0].geometry.location;
         const timestamp = +moment().format('X');
 
-        request.get('https://maps.googleapis.com/maps/api/timezone/json?location=' + location.lat + ',' + location.lng + '&timestamp=' + timestamp + '&key=AIzaSyD2Tp6-xQ0RLrXc0_iwlzJ0__26-L8UHME', (err, response) => {
+        request.get('https://maps.googleapis.com/maps/api/timezone/json?location=' + location.lat + ',' + location.lng + '&timestamp=' + timestamp + '&key=YOUR_API_KEY', (err, response) => {
             if(err) {
                 console.log(err);
                 return res.sendStatus(500);
